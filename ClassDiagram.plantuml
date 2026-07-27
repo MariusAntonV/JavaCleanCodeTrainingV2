@@ -1,0 +1,37 @@
+@startuml
+
+title __Class Diagram__\n
+
+  namespace trainers {
+    class trainers.Trainer {
+    }
+  }
+
+  namespace training {
+    class training.Topic {
+    }
+  }
+  
+
+  namespace training {
+    class training.Training {
+    }
+  }
+
+  namespace training {
+      class training.Student {
+      }
+    }
+
+
+  training.Training o-- training.Topic : topic
+  training.Training o-- trainers.Trainer : trainer
+  training.Student --> training.Training : participate
+
+
+right footer
+
+
+endfooter
+
+@enduml
