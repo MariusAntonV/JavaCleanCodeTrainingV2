@@ -8,10 +8,16 @@ import trainers.Trainer;
 public class StudentTest
 {
 
+   private static Contact standardContact()
+   {
+      return new Contact( new Address( "Romania", "Cluj-Napoca", "Taietura" ), "1234567" );
+   }
+
+
    @Test
    public void deliveredExperience()
    {
-      final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
+      final Student student = new Student( "Marius", standardContact() );
       student.addCredit( 30 );
 
       final Trainer trainer1 = new Trainer( "Mihai", Trainer.JUNIOR );
@@ -38,7 +44,7 @@ public class StudentTest
    @Test
    public void addCredits()
    {
-      final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
+      final Student student = new Student( "Marius", standardContact() );
       student.addCredit( 30 );
       Assert.assertEquals( 30, student.getCredits() );
    }
@@ -47,7 +53,7 @@ public class StudentTest
    @Test
    public void addCredits_accumulatesAcrossCalls()
    {
-      final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
+      final Student student = new Student( "Marius", standardContact() );
       student.addCredit( 30 );
       student.addCredit( 20 );
       Assert.assertEquals( 50, student.getCredits() );
@@ -60,16 +66,28 @@ public class StudentTest
    @Test
    public void printAddress_joinsCountryCityStreet()
    {
-      final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
-      Assert.assertEquals( "Romania, Cluj-Napoca, Taietura", student.printAddress() );
+      final Student student = new Student( "Marius", standardContact() );
+      Assert.assertEquals( "Romania, Cluj-Napoca, Taietura", student.getAddressAsText() );
    }
 
 
    @Test
    public void printContact_appendsPhoneToAddress()
    {
-      final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
-      Assert.assertEquals( "Romania, Cluj-Napoca, Taietura, 1234567", student.printContact() );
+      final Student student = new Student( "Marius", standardContact() );
+      Assert.assertEquals( "Romania, Cluj-Napoca, Taietura, 1234567", student.getContactAsText() );
+   }
+
+
+   @Test
+   public void studentCanBeBuiltFromAContact()
+   {
+      final Contact contact = new Contact( new Address( "Romania", "Cluj-Napoca", "Taietura" ), "1234567" );
+      final Student student = new Student( "Marius", contact );
+
+      Assert.assertSame( contact, student.getContact() );
+      Assert.assertEquals( "Romania, Cluj-Napoca, Taietura", student.getAddressAsText() );
+      Assert.assertEquals( "Romania, Cluj-Napoca, Taietura, 1234567", student.getContactAsText() );
    }
 
 
@@ -129,7 +147,7 @@ public class StudentTest
 
    private int experienceForSingleTraining( final String trainerType, final int difficulty )
    {
-      final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
+      final Student student = new Student( "Marius", standardContact() );
       final Trainer trainer = new Trainer( "Trainer", trainerType );
       final Topic topic = new Topic( "Topic", difficulty );
       student.participate( new Training( topic, trainer, 0 ) );

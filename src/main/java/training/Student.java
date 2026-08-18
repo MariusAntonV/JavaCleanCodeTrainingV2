@@ -9,43 +9,42 @@ public class Student
 {
    private final String name;
 
-   private final String country;
-
-   private final String city;
-
-   private final String street;
-
-   private final String phoneNo;
+   private final Contact contact;
 
    private int credits;
 
    private final List<Training> trainings = new ArrayList<>();
 
-   public Student( final String name, final String country, final String city, final String street,
-         final String phoneNo )
+
+
+   public Student( final String name, final Contact contact )
    {
       this.name = name;
-      this.country = country;
-      this.city = city;
-      this.street = street;
-      this.phoneNo = phoneNo;
+      this.contact = contact;
    }
 
 
-   public String printAddress()
+   public String getName()
    {
-      final StringBuilder sb = new StringBuilder( "" );
-      sb.append( this.country ).append( ", " ).append( this.city ).append( ", " ).append( this.street );
-      return sb.toString();
+      return this.name;
    }
 
 
-   public String printContact()
+   public Contact getContact()
    {
-      final StringBuilder sb = new StringBuilder( "" );
-      sb.append( this.country ).append( ", " ).append( this.city ).append( ", " ).append( this.street ).append( ", " )
-            .append( this.phoneNo );
-      return sb.toString();
+      return this.contact;
+   }
+
+
+   public String getAddressAsText()
+   {
+      return this.contact.getAddress().asText();
+   }
+
+
+   public String getContactAsText()
+   {
+      return this.contact.asText();
    }
 
 
@@ -67,7 +66,6 @@ public class Student
    }
 
 
-
    public List<Training> getTrainings()
    {
       return this.trainings;
@@ -79,7 +77,9 @@ public class Student
       this.credits += credit;
    }
 
-   public int getCredits(){
+
+   public int getCredits()
+   {
       return this.credits;
    }
 

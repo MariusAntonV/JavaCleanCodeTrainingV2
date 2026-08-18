@@ -43,7 +43,8 @@ public class BugfixStepsTest
    @Test
    public void participate_returnsRunningTotalCost()
    {
-      final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
+      final Student student = new Student( "Marius",
+            new Contact( new Address( "Romania", "Cluj-Napoca", "Taietura" ), "1234567" ) );
       final Trainer trainer = new Trainer( "Trainer", Trainer.SENIOR );
       final Topic topic = new Topic( "Topic", 10 );
 
