@@ -47,8 +47,8 @@ public class BugfixStepsTest
       final Trainer trainer = new Trainer( "Trainer", Trainer.S );
       final Topic topic = new Topic( "Topic", 10 );
 
-      student.participate( new TrainPeople( topic, trainer, 10 ) );
-      final int totalCost = student.participate( new TrainPeople( topic, trainer, 20 ) );
+      student.participate( new Training( topic, trainer, 10 ) );
+      final int totalCost = student.participate( new Training( topic, trainer, 20 ) );
 
       Assert.assertEquals( 30, totalCost );
    }
