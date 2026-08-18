@@ -2,61 +2,29 @@ package trainers;
 
 import training.ITrainer;
 
-public class Trainer implements ITrainer
+/**
+ * Base class for all trainers. Holds the common state (the name) and leaves the
+ * amount of experience delivered to the concrete subclasses:
+ * {@link JuniorTrainer}, {@link MiddleTrainer} and {@link SeniorTrainer}.
+ *
+ * Replacing the old {@code type}-string + {@code switch} with polymorphism means
+ * a new trainer level can be added without touching existing code (Open/Closed
+ * Principle).
+ */
+public abstract class Trainer implements ITrainer
 {
-
    private final String name;
 
-   private final String type;
 
-
-   public Trainer( final String name, final String type )
+   protected Trainer( final String name )
    {
       this.name = name;
-      this.type = type;
-   }
-
-
-   public String getName()
-   {
-      return this.name;
    }
 
 
    @Override
-   public int deliverExperience( int difficulty )
+   public String getName()
    {
-      int experience = 0;
-      switch ( type )
-      {
-         case ITrainer.JUNIOR:
-            if ( difficulty < 30 )
-            {
-               experience += difficulty;
-            }
-            else if ( difficulty < 60 )
-            {
-               experience += difficulty / 2;
-            }
-            else
-            {
-               experience += 0;//too difficult
-            }
-            break;
-         case ITrainer.MIDDLE:
-            if ( difficulty < 50 )
-            {
-               experience += difficulty;
-            }
-            else
-            {
-               experience += difficulty * 0.6;
-            }
-            break;
-         case ITrainer.SENIOR:
-            experience += difficulty;//delivered experience is 100%
-            break;
-      }
-      return experience;
+      return this.name;
    }
 }

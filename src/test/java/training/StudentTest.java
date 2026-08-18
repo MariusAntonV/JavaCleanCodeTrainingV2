@@ -4,7 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import math.MathTrainer;
-import trainers.Trainer;
+import trainers.JuniorTrainer;
+import trainers.MiddleTrainer;
+import trainers.SeniorTrainer;
 
 public class StudentTest
 {
@@ -21,9 +23,9 @@ public class StudentTest
       final Student student = new Student( "Marius", standardContact() );
       student.addCredit( 30 );
 
-      final ITrainer trainer1 = new Trainer( "Mihai", ITrainer.JUNIOR );
-      final ITrainer trainer2 = new Trainer( "Ionut", ITrainer.MIDDLE );
-      final ITrainer trainer3 = new Trainer( "Andreea", ITrainer.SENIOR );
+      final ITrainer trainer1 = new JuniorTrainer( "Mihai" );
+      final ITrainer trainer2 = new MiddleTrainer( "Ionut" );
+      final ITrainer trainer3 = new SeniorTrainer( "Andreea" );
 
       final Topic html = new Topic( "HTML for beginners", 20 );
       final Topic java = new Topic( "Java in action", 50 );
@@ -95,49 +97,49 @@ public class StudentTest
    @Test
    public void junior_belowEasyThreshold_awardsFullDifficulty()
    {
-      Assert.assertEquals( 29, experienceForSingleTraining( ITrainer.JUNIOR, 29 ) );
+      Assert.assertEquals( 29, experienceForSingleTraining( new JuniorTrainer( "Trainer" ), 29 ) );
    }
 
 
    @Test
    public void junior_atEasyThreshold_awardsHalfDifficulty()
    {
-      Assert.assertEquals( 15, experienceForSingleTraining( ITrainer.JUNIOR, 30 ) );
+      Assert.assertEquals( 15, experienceForSingleTraining( new JuniorTrainer( "Trainer" ), 30 ) );
    }
 
 
    @Test
    public void junior_justBelowHardThreshold_awardsHalfDifficulty()
    {
-      Assert.assertEquals( 29, experienceForSingleTraining( ITrainer.JUNIOR, 59 ) );
+      Assert.assertEquals( 29, experienceForSingleTraining( new JuniorTrainer( "Trainer" ), 59 ) );
    }
 
 
    @Test
    public void junior_atHardThreshold_awardsNoExperience()
    {
-      Assert.assertEquals( 0, experienceForSingleTraining( ITrainer.JUNIOR, 60 ) );
+      Assert.assertEquals( 0, experienceForSingleTraining( new JuniorTrainer( "Trainer" ), 60 ) );
    }
 
 
    @Test
    public void middle_belowThreshold_awardsFullDifficulty()
    {
-      Assert.assertEquals( 49, experienceForSingleTraining( ITrainer.MIDDLE, 49 ) );
+      Assert.assertEquals( 49, experienceForSingleTraining( new MiddleTrainer( "Trainer" ), 49 ) );
    }
 
 
    @Test
    public void middle_atThreshold_awardsReducedDifficulty()
    {
-      Assert.assertEquals( 30, experienceForSingleTraining( ITrainer.MIDDLE, 50 ) );
+      Assert.assertEquals( 30, experienceForSingleTraining( new MiddleTrainer( "Trainer" ), 50 ) );
    }
 
 
    @Test
    public void senior_awardsFullDifficultyRegardlessOfLevel()
    {
-      Assert.assertEquals( 80, experienceForSingleTraining( ITrainer.SENIOR, 80 ) );
+      Assert.assertEquals( 80, experienceForSingleTraining( new SeniorTrainer( "Trainer" ), 80 ) );
    }
 
 
@@ -159,10 +161,9 @@ public class StudentTest
    }
 
 
-   private int experienceForSingleTraining( final String trainerType, final int difficulty )
+   private int experienceForSingleTraining( final ITrainer trainer, final int difficulty )
    {
       final Student student = new Student( "Marius", standardContact() );
-      final ITrainer trainer = new Trainer( "Trainer", trainerType );
       final Topic topic = new Topic( "Topic", difficulty );
       student.participate( new Training( topic, trainer, 0 ) );
       return student.calculateGainedExperience();

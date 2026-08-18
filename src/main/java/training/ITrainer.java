@@ -7,13 +7,8 @@ package training;
 
 public interface ITrainer
 {
-    String JUNIOR = "junior";
-    String MIDDLE = "middle";
-    String SENIOR = "senior";
-
     String getName();
 
-//    String getType();
 
     int deliverExperience(int difficulty);
 

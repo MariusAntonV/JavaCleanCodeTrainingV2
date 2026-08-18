@@ -5,7 +5,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import others.Wallet;
-import trainers.Trainer;
+import trainers.SeniorTrainer;
 
 /**
  * Bugfix steps.
@@ -45,7 +45,7 @@ public class BugfixStepsTest
    {
       final Student student = new Student( "Marius",
             new Contact( new Address( "Romania", "Cluj-Napoca", "Taietura" ), "1234567" ) );
-      final Trainer trainer = new Trainer( "Trainer", Trainer.SENIOR );
+      final ITrainer trainer = new SeniorTrainer( "Trainer" );
       final Topic topic = new Topic( "Topic", 10 );
 
       student.participate( new Training( topic, trainer, 10 ) );
