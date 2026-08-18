@@ -32,4 +32,8 @@ public class Training
    {
       return this.cost;
    }
+
+   public int deliveredExperience(){
+      return trainer.deliverExperience( this.topic.getDifficulty() );
+   }
 }
