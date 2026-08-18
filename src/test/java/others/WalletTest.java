@@ -18,7 +18,7 @@ public class WalletTest
    public void consumeCredits_withEnoughBalance_succeedsAndDeducts()
    {
       final Wallet wallet = new Wallet();
-      wallet.addCredits( 100, false );
+      wallet.addCredits( 100 );
 
       Assert.assertEquals( Wallet.Code.OK, wallet.consumeCredits( 40 ) );
       Assert.assertEquals( Wallet.Code.OK, wallet.consumeCredits( 60 ) );
@@ -30,7 +30,7 @@ public class WalletTest
    public void consumeCredits_withInsufficientBalance_isRejected()
    {
       final Wallet wallet = new Wallet();
-      wallet.addCredits( 30, false );
+      wallet.addCredits( 30);
 
       Assert.assertEquals( Wallet.Code.INSUFFICIENT_FUNDS, wallet.consumeCredits( 31 ) );
    }
@@ -40,8 +40,8 @@ public class WalletTest
    public void addCredits_ignoresNonPositiveAmounts()
    {
       final Wallet wallet = new Wallet();
-      wallet.addCredits( 0, false );
-      wallet.addCredits( -50, false );
+      wallet.addCredits( 0 );
+      wallet.addCredits( -50 );
 
       Assert.assertEquals( Wallet.Code.INSUFFICIENT_FUNDS, wallet.consumeCredits( 1 ) );
    }
@@ -51,7 +51,7 @@ public class WalletTest
    public void bonusCredits_areNotSpendableAsRegularCredits()
    {
       final Wallet wallet = new Wallet();
-      wallet.addCredits( 50, true ); // bonus only, no regular credits
+      wallet.addBonusCredits( 50); // bonus only, no regular credits
 
       Assert.assertEquals( Wallet.Code.INSUFFICIENT_FUNDS, wallet.consumeCredits( 1 ) );
       Assert.assertTrue( wallet.hasBonusCredits() );

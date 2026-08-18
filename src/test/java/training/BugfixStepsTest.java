@@ -68,7 +68,7 @@ public class BugfixStepsTest
    public void hasBonusCredits_isASideEffectFreeQuery()
    {
       final Wallet wallet = new Wallet();
-      wallet.addCredits( 1, true ); // exactly one bonus credit
+      wallet.addBonusCredits( 1 ); // exactly one bonus credit
 
       Assert.assertTrue( wallet.hasBonusCredits() );
       Assert.assertTrue( wallet.hasBonusCredits() ); // still true - checking must not consume it
