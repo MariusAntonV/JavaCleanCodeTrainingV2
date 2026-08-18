@@ -84,47 +84,47 @@ public class Student
    }
 
 
-   public int exp()
+   public int calculateGainedExperience()
    {
-      int e = 0;
-      for ( final Training tr : this.trainings )
+      int experience = 0;
+      for ( final Training training : this.trainings )
       {
-         final int d = tr.getTopic().getDifficulty();
-         final Trainer t = tr.getTrainer();
+         final int difficulty = training.getTopic().getDifficulty();
+         final Trainer trainer = training.getTrainer();
 
-         switch ( t.getType() )
+         switch ( trainer.getType() )
          {
-            case Trainer.J:
-               if ( d < 30 )
+            case Trainer.JUNIOR:
+               if ( difficulty < 30 )
                {
-                  e += d;
+                  experience += difficulty;
                }
-               else if ( d < 60 )
+               else if ( difficulty < 60 )
                {
-                  e += d / 2;
-               }
-               else
-               {
-                  e += 0;//too difficult
-               }
-               break;
-            case Trainer.M:
-               if ( d < 50 )
-               {
-                  e += d;
+                  experience += difficulty / 2;
                }
                else
                {
-                  e += d * 0.6;
+                  experience += 0;//too difficult
                }
                break;
-            case Trainer.S:
-               e += d;//efficiency is 100%
+            case Trainer.MIDDLE:
+               if ( difficulty < 50 )
+               {
+                  experience += difficulty;
+               }
+               else
+               {
+                  experience += difficulty * 0.6;
+               }
+               break;
+            case Trainer.SENIOR:
+               experience += difficulty;//delivered experience is 100%
                break;
          }
 
       }
 
-      return e;
+      return experience;
    }
 }

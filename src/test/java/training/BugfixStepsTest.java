@@ -44,7 +44,7 @@ public class BugfixStepsTest
    public void participate_returnsRunningTotalCost()
    {
       final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
-      final Trainer trainer = new Trainer( "Trainer", Trainer.S );
+      final Trainer trainer = new Trainer( "Trainer", Trainer.SENIOR );
       final Topic topic = new Topic( "Topic", 10 );
 
       student.participate( new Training( topic, trainer, 10 ) );
