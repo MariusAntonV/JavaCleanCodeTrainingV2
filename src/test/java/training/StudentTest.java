@@ -3,6 +3,7 @@ package training;
 import org.junit.Assert;
 import org.junit.Test;
 
+import liskov.LiskovTrainer;
 import math.MathTrainer;
 import trainers.JuniorTrainer;
 import trainers.MiddleTrainer;
@@ -156,6 +157,27 @@ public class StudentTest
       final Training training1 = new Training( html, trainer, 10 );
 
       student.participate( training1 );
+
+      Assert.assertEquals( 100, student.calculateGainedExperience() );
+   }
+
+
+   @Test
+   public void testLiskovTrainer()
+   {
+      final Student student = new Student( "Marius", standardContact() );
+      student.addCredit( 30 );
+
+      final ITrainer trainer = new MathTrainer();
+      final ITrainer liskovTrainer = new LiskovTrainer();
+
+      final Topic html = new Topic( "HTML for beginners", 20 );
+
+      final Training training1 = new Training( html, trainer, 10 );
+      final Training training2 = new Training( html, liskovTrainer, 10 );
+
+      student.participate( training1 );
+      student.participate( training2 );
 
       Assert.assertEquals( 100, student.calculateGainedExperience() );
    }
