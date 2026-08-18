@@ -140,8 +140,22 @@ public class StudentTest
       Assert.assertEquals( 80, experienceForSingleTraining( ITrainer.SENIOR, 80 ) );
    }
 
-   public void testMath(){
+
+   @Test
+   public void testMathTrainer()
+   {
+      final Student student = new Student( "Marius", standardContact() );
+      student.addCredit( 30 );
+
       final ITrainer trainer = new MathTrainer();
+
+      final Topic html = new Topic( "HTML for beginners", 20 );
+
+      final Training training1 = new Training( html, trainer, 10 );
+
+      student.participate( training1 );
+
+      Assert.assertEquals( 100, student.calculateGainedExperience() );
    }
 
 

@@ -3,18 +3,22 @@
  **            Registered with Commercial Court Vienna,
  **            reg.no. FN 72.115b.
  ************************************************************************/
-package training;
+package math;
 
-public interface ITrainer
+import training.ITrainer;
+
+public class MathTrainer implements ITrainer
 {
-    String JUNIOR = "junior";
-    String MIDDLE = "middle";
-    String SENIOR = "senior";
+   @Override
+   public String getName()
+   {
+      return "George Matematician";
+   }
 
-    String getName();
 
-//    String getType();
-
-    int deliverExperience(int difficulty);
-
+   @Override
+   public int deliverExperience( int difficulty )
+   {
+      return 100;
+   }
 }
