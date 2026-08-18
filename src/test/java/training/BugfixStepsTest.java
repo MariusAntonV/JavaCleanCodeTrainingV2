@@ -39,7 +39,7 @@ public class BugfixStepsTest
     * pays for the trainings). This test uses the current surface - the value
     * returned by participate(...).
     */
-   @Ignore( "Step B1: enable during the 'cost calculation' topic (currently RED)" )
+//   @Ignore( "Step B1: enable during the 'cost calculation' topic (currently RED)" )
    @Test
    public void participate_returnsRunningTotalCost()
    {
@@ -48,7 +48,8 @@ public class BugfixStepsTest
       final Topic topic = new Topic( "Topic", 10 );
 
       student.participate( new Training( topic, trainer, 10 ) );
-      final int totalCost = student.participate( new Training( topic, trainer, 20 ) );
+      student.participate( new Training( topic, trainer, 20 ) );
+      final int totalCost = student.calculateTotalTrainingsCost();
 
       Assert.assertEquals( 30, totalCost );
    }

@@ -49,18 +49,23 @@ public class Student
    }
 
 
-   public Integer participate( final Training training )
+   public void participate( final Training training )
    {
       this.trainings.add( training );
+   }
 
-      final int cst = 0;
-      for ( final Training t : this.trainings )
+
+   protected Integer calculateTotalTrainingsCost()
+   {
+      int cost = 0;
+      for ( final Training aTraining : this.trainings )
       {
-         t.cost( cst );
+         cost += aTraining.getCost();
       }
 
-      return cst;
+      return cost;
    }
+
 
 
    public List<Training> getTrainings()
