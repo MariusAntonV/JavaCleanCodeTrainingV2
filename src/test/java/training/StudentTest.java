@@ -12,7 +12,7 @@ public class StudentTest
    public void deliveredExperience()
    {
       final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
-      student.crds( 30 );
+      student.addCredit( 30 );
 
       final Trainer trainer1 = new Trainer( "Mihai", Trainer.JUNIOR );
       final Trainer trainer2 = new Trainer( "Ionut", Trainer.MIDDLE );
@@ -39,8 +39,8 @@ public class StudentTest
    public void addCredits()
    {
       final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
-      student.crds( 30 );
-      Assert.assertEquals( 30, student.creds() );
+      student.addCredit( 30 );
+      Assert.assertEquals( 30, student.getCredits() );
    }
 
 
@@ -48,9 +48,9 @@ public class StudentTest
    public void addCredits_accumulatesAcrossCalls()
    {
       final Student student = new Student( "Marius", "Romania", "Cluj-Napoca", "Taietura", "1234567" );
-      student.crds( 30 );
-      student.crds( 20 );
-      Assert.assertEquals( 50, student.creds() );
+      student.addCredit( 30 );
+      student.addCredit( 20 );
+      Assert.assertEquals( 50, student.getCredits() );
    }
 
 

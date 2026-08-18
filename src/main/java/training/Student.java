@@ -17,7 +17,7 @@ public class Student
 
    private final String phoneNo;
 
-   private int avCrds;
+   private int credits;
 
    private final List<Training> trainings = new ArrayList<>();
 
@@ -74,13 +74,13 @@ public class Student
    }
 
 
-   public void crds( final int c )
+   public void addCredit( final int credit )
    {
-      this.avCrds += c;
+      this.credits += credit;
    }
 
-   public int creds(){
-      return this.avCrds;
+   public int getCredits(){
+      return this.credits;
    }
 
 
