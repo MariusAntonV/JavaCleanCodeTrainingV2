@@ -1,8 +1,9 @@
 package math;
 
+import training.IBillable;
 import training.ITrainer;
 
-public class BillableTrainer implements ITrainer
+public class BillableTrainer implements ITrainer, IBillable
 {
    @Override
    public String getName()
@@ -17,7 +18,7 @@ public class BillableTrainer implements ITrainer
       return 300;
    }
 
-
+   @Override
    public void charge( int credit )
    {
       //charge given redit

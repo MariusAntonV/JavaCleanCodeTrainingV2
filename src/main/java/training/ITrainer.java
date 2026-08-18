@@ -11,9 +11,4 @@ public interface ITrainer
 
 
     int deliverExperience(int difficulty);
-
-    default void charge( int credit ){
-
-    };
-
 }
